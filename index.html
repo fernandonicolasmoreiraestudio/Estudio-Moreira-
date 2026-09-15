@@ -4,200 +4,649 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Central Estudio Moreira · Jurídico</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 :root{
-  --navy:#17263a; --navy2:#20344f; --bg:#f4f6f8; --card:#ffffff; --text:#1b2430;
-  --muted:#6b7785; --line:#dfe5eb; --red:#d63d3d; --orange:#e89a1d; --blue:#2c6ed5;
-  --green:#2f9e63; --purple:#6e56cf;
+  --navy:#17263a;
+  --navy2:#20344f;
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#1b2430;
+  --muted:#6b7785;
+  --line:#dfe5eb;
 }
+
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
-header{background:linear-gradient(90deg,var(--navy),var(--navy2));color:white;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand h1{font-family:Georgia,serif;font-size:20px;margin:0 0 4px;letter-spacing:.3px}
-.brand .sub{font-size:12px;opacity:.86}
-.search{min-width:300px;max-width:460px;flex:1}
-.search input{width:100%;background:#2b3f5c;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:11px 13px;color:#fff;outline:none}
-.search input::placeholder{color:#c9d3df}
-.layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 78px)}
-aside{background:#1a2a3e;color:#dfe8f3;padding:18px 14px;display:flex;flex-direction:column;gap:8px}
-.navitem{padding:11px 12px;border-radius:8px;font-size:14px}
-.navitem.active{background:#2c415f;color:white;font-weight:700}
+
+body{
+  margin:0;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.hidden{display:none!important}
+
+header{
+  background:linear-gradient(90deg,var(--navy),var(--navy2));
+  color:white;
+  padding:18px 26px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand h1{
+  font-family:Georgia,serif;
+  font-size:20px;
+  margin:0 0 4px;
+}
+
+.brand .sub{
+  font-size:12px;
+  opacity:.86;
+}
+
+.userbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:230px 1fr;
+  min-height:calc(100vh - 76px);
+}
+
+aside{
+  background:#1a2a3e;
+  color:#dfe8f3;
+  padding:18px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.navitem{
+  padding:11px 12px;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.navitem.active{
+  background:#2c415f;
+  color:white;
+  font-weight:700;
+}
+
 .navitem.dim{opacity:.6}
-.aside-bottom{margin-top:auto;font-size:12px;opacity:.65;padding:12px}
+
+.aside-bottom{
+  margin-top:auto;
+  font-size:12px;
+  opacity:.65;
+  padding:12px;
+}
+
 main{padding:26px}
-.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:18px}
-.topline h2{margin:0;font-size:28px}
-.topline p{margin:6px 0 0;color:var(--muted)}
-.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
-.badge.yellow{background:#fff2c8;color:#8b6713}.badge.red{background:#fde2e2;color:#9e2424}
-.badge.green{background:#def3e7;color:#22744b}.badge.blue{background:#e2ecff;color:#245bb1}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(20,35,55,.04)}
-.kpi{font-size:26px;font-weight:800;margin-bottom:5px}.label{font-size:13px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:1.5fr .9fr;gap:18px}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.panel h3{margin:0;padding:16px 18px;border-bottom:1px solid var(--line);font-size:16px}
-.case-head{padding:18px;display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line)}
-.case-title{font-weight:800;font-size:18px}.meta{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.5}
-.timeline{padding:6px 18px 18px}
-.event{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid #edf1f5}
-.event:last-child{border-bottom:0}
-.date{font-size:12px;color:var(--muted);font-weight:700}
-.event-title{font-weight:750;font-size:14px;margin-bottom:4px}
-.event-desc{font-size:13px;color:var(--muted);line-height:1.45}
-.new{display:inline-block;background:#fde2e2;color:#9e2424;font-size:10px;font-weight:800;padding:3px 6px;border-radius:5px;margin-left:6px}
-.side-section{padding:16px 18px;border-bottom:1px solid var(--line)}
-.side-section:last-child{border-bottom:0}
-.task{display:flex;gap:10px;align-items:flex-start;padding:10px 0}
-.dot{width:10px;height:10px;border-radius:50%;margin-top:4px;flex:none}.dot.blue{background:var(--blue)}.dot.red{background:var(--red)}.dot.orange{background:var(--orange)}.dot.green{background:var(--green)}
-.task b{font-size:13px}.task span{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.4}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-button{border:1px solid var(--line);background:white;border-radius:8px;padding:9px 11px;font-weight:700;color:var(--text);cursor:pointer}
-button.primary{background:var(--navy);color:white;border-color:var(--navy)}
-.footer-note{margin-top:18px;color:var(--muted);font-size:12px}
-@media(max-width:950px){
- .layout{grid-template-columns:1fr} aside{display:none}.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.search{display:none}
+
+.topline{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  margin-bottom:18px;
+}
+
+.topline h2{
+  margin:0;
+  font-size:28px;
+}
+
+.topline p{
+  margin:6px 0 0;
+  color:var(--muted);
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:700;
+  background:#def3e7;
+  color:#22744b;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.card,.panel{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(20,35,55,.04);
+}
+
+.card{padding:18px}
+
+.kpi{
+  font-size:26px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.label{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.panel{overflow:hidden}
+
+.panel h3{
+  margin:0;
+  padding:16px 18px;
+  border-bottom:1px solid var(--line);
+  font-size:16px;
+}
+
+.case{
+  padding:16px 18px;
+  border-bottom:1px solid var(--line);
+}
+
+.case:last-child{border-bottom:0}
+
+.case-title{
+  font-weight:800;
+  font-size:16px;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:6px;
+  line-height:1.5;
+}
+
+.empty{
+  padding:28px 18px;
+  color:var(--muted);
+}
+
+button{
+  border:1px solid var(--line);
+  background:white;
+  border-radius:8px;
+  padding:9px 11px;
+  font-weight:700;
+  color:var(--text);
+  cursor:pointer;
+}
+
+button.primary{
+  background:var(--navy);
+  color:white;
+  border-color:var(--navy);
+}
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+}
+
+.loginbox{
+  width:min(430px,100%);
+  background:white;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 20px 60px rgba(0,0,0,.22);
+}
+
+.loginbox h1{
+  font-family:Georgia,serif;
+  margin:0 0 6px;
+  font-size:25px;
+}
+
+.loginbox p{
+  color:var(--muted);
+  margin:0 0 22px;
+}
+
+.loginbox label{
+  font-size:12px;
+  font-weight:700;
+  display:block;
+  margin:8px 0 6px;
+}
+
+.loginbox input{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  outline:none;
+  font-size:14px;
+}
+
+.loginbox button{
+  width:100%;
+  padding:12px;
+  margin-top:16px;
+}
+
+.error{
+  color:#a52a2a;
+  font-size:13px;
+  margin-top:12px;
+  line-height:1.4;
+}
+
+.security-note{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:16px;
+  line-height:1.45;
+}
+
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  aside{display:none}
+  .cards{grid-template-columns:1fr}
+  .userbar span{display:none}
 }
 </style>
 </head>
+
 <body>
+
+<section id="loginScreen">
+  <div class="loginbox">
+    <h1>Central Estudio Moreira</h1>
+    <p>Acceso privado · Gestión jurídica</p>
+
+    <label for="email">Correo electrónico</label>
+    <input id="email" type="email" autocomplete="username" placeholder="Tu correo">
+
+    <label for="password">Contraseña</label>
+    <input id="password" type="password" autocomplete="current-password" placeholder="Tu contraseña">
+
+    <button class="primary" id="loginBtn">Ingresar</button>
+
+    <div id="loginError" class="error"></div>
+
+    <div class="security-note">
+      Los expedientes no están incluidos en el código público de esta página.
+      Se consultan desde la base privada luego de autenticarte.
+    </div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+
 <header>
   <div class="brand">
     <h1>FERNANDO NICOLAS MOREIRA</h1>
-    <div class="sub">Abogado y Contador Público · PENAL Y TRIBUTARIO · CENTRAL ESTUDIO MOREIRA</div>
+    <div class="sub">
+      Abogado y Contador Público · PENAL Y TRIBUTARIO · CENTRAL ESTUDIO MOREIRA
+    </div>
   </div>
-  <div class="search"><input id="q" placeholder="Buscar expediente, cliente, juzgado..."></div>
+
+  <div class="userbar">
+    <span id="userEmail"></span>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </div>
 </header>
 
 <div class="layout">
+
 <aside>
   <div class="navitem active">⌂ Inicio</div>
-  <div class="navitem">⚖ Expedientes PJN</div>
+  <div class="navitem">⚖ Expedientes</div>
   <div class="navitem">✓ Tareas del estudio</div>
   <div class="navitem">◷ Agenda y vencimientos</div>
   <div class="navitem">👥 Equipo</div>
   <div class="navitem">▣ Documentos</div>
   <div class="navitem dim">▤ Contable · Próximamente</div>
-  <div class="aside-bottom">MVP jurídico · versión 0.1<br>Integración PJN: simulada</div>
+
+  <div class="aside-bottom">
+    MVP jurídico · versión 0.2<br>
+    Base privada · Supabase
+  </div>
 </aside>
 
 <main>
+
   <div class="topline">
     <div>
       <h2>Panel jurídico</h2>
-      <p>Primera versión testigo · PJN · Antosenko</p>
+      <p>Gestión privada de expedientes del estudio</p>
     </div>
-    <span class="badge yellow">PJN · En despacho</span>
+
+    <span class="badge">SESIÓN AUTENTICADA</span>
   </div>
 
   <section class="cards">
-    <div class="card"><div class="kpi">2</div><div class="label">Novedades nuevas</div></div>
-    <div class="card"><div class="kpi">0</div><div class="label">Plazos del tribunal</div></div>
-    <div class="card"><div class="kpi">0</div><div class="label">Vencimientos calculados</div></div>
-    <div class="card"><div class="kpi">1</div><div class="label">Pendiente interno</div></div>
-  </section>
 
-  <section class="grid">
-    <div class="panel" id="expediente">
-      <div class="case-head">
-        <div>
-          <div class="case-title">Antosenko Delgado, Yesenia Madgalena</div>
-          <div class="meta">
-            CFP 1566/2026 · Cámara Criminal y Correccional Federal<br>
-            Juzgado Criminal y Correccional Federal N.º 11 · Secretaría N.º 22<br>
-            Infracción Ley 22.362
-          </div>
-        </div>
-        <div class="actions">
-          <button onclick="markRead()">Marcar novedades vistas</button>
-          <button class="primary" onclick="addTask()">+ Nueva tarea</button>
-        </div>
-      </div>
-
-      <h3>Últimas actuaciones</h3>
-      <div class="timeline" id="timeline">
-        <div class="event" data-search="solicita sobreseimiento escrito incorporado">
-          <div class="date">11/09/2026</div>
-          <div>
-            <div class="event-title">Escrito incorporado · Solicita sobreseimiento <span class="new">NUEVO</span></div>
-            <div class="event-desc">Presentado el 07/09/2026 a las 10:52. Pendiente de despacho.</div>
-          </div>
-        </div>
-        <div class="event" data-search="acta declaración indagatoria">
-          <div class="date">11/09/2026</div>
-          <div>
-            <div class="event-title">Acta declaración indagatoria <span class="new">NUEVO</span></div>
-            <div class="event-desc">Acta incorporada al expediente. Presentada el 11/09/2026 a las 10:35.</div>
-          </div>
-        </div>
-        <div class="event" data-search="designa nuevo defensor">
-          <div class="date">28/08/2026</div>
-          <div>
-            <div class="event-title">Firma despacho · Designa nuevo defensor</div>
-            <div class="event-desc">Hace lugar a lo solicitado.</div>
-          </div>
-        </div>
-        <div class="event" data-search="solicita postergación audiencia">
-          <div class="date">20/08/2026</div>
-          <div>
-            <div class="event-title">Firma despacho · Hace lugar a postergación</div>
-            <div class="event-desc">Resolución vinculada a solicitud de postergación de audiencia.</div>
-          </div>
-        </div>
-      </div>
+    <div class="card">
+      <div class="kpi" id="expCount">0</div>
+      <div class="label">Expedientes</div>
     </div>
 
-    <div class="panel">
-      <h3>Control del estudio</h3>
-      <div class="side-section">
-        <div class="task">
-          <div class="dot blue"></div>
-          <div><b>Controlar despacho del sobreseimiento</b><span>Responsable: Fernando · sin vencimiento</span></div>
-        </div>
-      </div>
-      <div class="side-section">
-        <b style="font-size:13px">Vencimientos</b>
-        <div class="task"><div class="dot red"></div><div><b>Plazo del tribunal</b><span>Ninguno cargado</span></div></div>
-        <div class="task"><div class="dot orange"></div><div><b>Vencimiento procesal calculado</b><span>Ninguno cargado</span></div></div>
-        <div class="task"><div class="dot blue"></div><div><b>Fecha interna del estudio</b><span>Control despacho · sin fecha</span></div></div>
-      </div>
-      <div class="side-section">
-        <b style="font-size:13px">Estado PJN</b>
-        <div style="margin-top:10px"><span class="badge yellow">EN DESPACHO</span></div>
-        <div class="meta">Última sincronización simulada: 14/09/2026 · 20:36</div>
-      </div>
+    <div class="card">
+      <div class="kpi" id="novCount">0</div>
+      <div class="label">Novedades</div>
+    </div>
+
+    <div class="card">
+      <div class="kpi" id="taskCount">0</div>
+      <div class="label">Tareas pendientes</div>
+    </div>
+
+  </section>
+
+  <section class="panel">
+    <h3>Expedientes</h3>
+
+    <div id="cases">
+      <div class="empty">Cargando expedientes…</div>
     </div>
   </section>
 
-  <div class="footer-note">
-    Prototipo local. Todavía no inicia sesión ni consulta PJN automáticamente. La próxima etapa es reemplazar estos datos simulados por sincronización autenticada.
-  </div>
 </main>
+</div>
 </div>
 
 <script>
-function markRead(){
-  document.querySelectorAll('.new').forEach(x=>x.remove());
-  document.querySelectorAll('.kpi')[0].textContent='0';
+
+const SUPABASE_URL =
+  'https://axspjbvinlmpotbrlzux.supabase.co';
+
+const SUPABASE_KEY =
+  'sb_publishable_Ig89c4nUM4Va7x9XT5bsqg_UcqmcGTU';
+
+const db = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const loginScreen =
+  document.getElementById('loginScreen');
+
+const app =
+  document.getElementById('app');
+
+const loginError =
+  document.getElementById('loginError');
+
+const loginBtn =
+  document.getElementById('loginBtn');
+
+function esc(value){
+
+  return String(value ?? '').replace(
+    /[&<>"']/g,
+    c => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#39;'
+    }[c])
+  );
+
 }
-function addTask(){
-  const t = prompt('Nueva tarea para este expediente:');
-  if(!t) return;
-  const sec = document.querySelector('.side-section');
-  const div = document.createElement('div');
-  div.className='task';
-  div.innerHTML='<div class="dot blue"></div><div><b>'+escapeHtml(t)+'</b><span>Responsable: sin asignar · fecha interna: sin definir</span></div>';
-  sec.appendChild(div);
+
+async function renderSession(session){
+
+  if(!session){
+
+    app.classList.add('hidden');
+    loginScreen.classList.remove('hidden');
+
+    return;
+
+  }
+
+  loginScreen.classList.add('hidden');
+  app.classList.remove('hidden');
+
+  document.getElementById('userEmail').textContent =
+    session.user.email || '';
+
+  await loadData();
+
 }
-function escapeHtml(s){
-  return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+loginBtn.addEventListener(
+  'click',
+  async () => {
+
+    loginError.textContent = '';
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Ingresando…';
+
+    const email =
+      document.getElementById('email').value.trim();
+
+    const password =
+      document.getElementById('password').value;
+
+    if(!email || !password){
+
+      loginError.textContent =
+        'Ingresá tu correo y contraseña.';
+
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Ingresar';
+
+      return;
+
+    }
+
+    const {data,error} =
+      await db.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Ingresar';
+
+    if(error){
+
+      loginError.textContent =
+        'No se pudo ingresar. Revisá el correo y la contraseña.';
+
+      return;
+
+    }
+
+    await renderSession(data.session);
+
+  }
+);
+
+document
+  .getElementById('password')
+  .addEventListener(
+    'keydown',
+    e => {
+
+      if(e.key === 'Enter'){
+        loginBtn.click();
+      }
+
+    }
+  );
+
+document
+  .getElementById('logoutBtn')
+  .addEventListener(
+    'click',
+    async () => {
+
+      await db.auth.signOut();
+      await renderSession(null);
+
+    }
+  );
+
+async function loadData(){
+
+  const casesBox =
+    document.getElementById('cases');
+
+  casesBox.innerHTML =
+    '<div class="empty">Cargando expedientes…</div>';
+
+  const [
+    {data:expedientes,error:expError},
+    {data:actuaciones,error:actError},
+    {data:tareas,error:taskError}
+  ] = await Promise.all([
+
+    db
+      .from('expedientes')
+      .select('*')
+      .order(
+        'created_at',
+        {ascending:false}
+      ),
+
+    db
+      .from('actuaciones')
+      .select('id,es_novedad'),
+
+    db
+      .from('tareas')
+      .select('id,estado')
+
+  ]);
+
+  if(expError || actError || taskError){
+
+    casesBox.innerHTML =
+      '<div class="empty">La sesión inició, pero hubo un problema al leer la base. Revisaremos la configuración de acceso.</div>';
+
+    return;
+
+  }
+
+  const exps = expedientes || [];
+  const acts = actuaciones || [];
+  const tasks = tareas || [];
+
+  document.getElementById('expCount').textContent =
+    exps.length;
+
+  document.getElementById('novCount').textContent =
+    acts.filter(
+      x => x.es_novedad
+    ).length;
+
+  document.getElementById('taskCount').textContent =
+    tasks.filter(
+      x =>
+        String(
+          x.estado || ''
+        ).toLowerCase() !== 'completada'
+    ).length;
+
+  if(!exps.length){
+
+    casesBox.innerHTML =
+      '<div class="empty">La Central está conectada a la base privada. Todavía no hay expedientes cargados.</div>';
+
+    return;
+
+  }
+
+  casesBox.innerHTML =
+    exps.map(
+      x => `
+
+      <div class="case">
+
+        <div class="case-title">
+          ${esc(
+            x.caratula ||
+            'Sin carátula'
+          )}
+        </div>
+
+        <div class="meta">
+
+          ${esc(
+            x.numero_expediente ||
+            'Sin número'
+          )}
+
+          ${
+            x.juzgado
+            ? ' · ' + esc(x.juzgado)
+            : ''
+          }
+
+          ${
+            x.secretaria
+            ? ' · ' + esc(x.secretaria)
+            : ''
+          }
+
+          ${
+            x.estado
+            ? ' · ' + esc(x.estado)
+            : ''
+          }
+
+        </div>
+
+      </div>
+
+      `
+    ).join('');
+
 }
-document.getElementById('q').addEventListener('input', function(){
-  const q=this.value.toLowerCase().trim();
-  document.querySelectorAll('.event').forEach(el=>{
-    el.style.display = !q || el.dataset.search.includes(q) ? 'grid':'none';
-  });
-});
+
+(async () => {
+
+  const {
+    data:{session}
+  } =
+    await db.auth.getSession();
+
+  await renderSession(session);
+
+})();
+
+db.auth.onAuthStateChange(
+  (_event,session) => {
+
+    if(!session){
+      renderSession(null);
+    }
+
+  }
+);
+
 </script>
+
 </body>
 </html>
