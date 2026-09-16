@@ -12,23 +12,19 @@
   --navy:#17263a;
   --navy2:#20344f;
   --bg:#f4f6f8;
-  --card:#ffffff;
+  --card:#fff;
   --text:#1b2430;
   --muted:#6b7785;
   --line:#dfe5eb;
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
-
 .hidden{display:none!important}
-
 header{
   background:linear-gradient(90deg,var(--navy),var(--navy2));
   color:white;
@@ -38,31 +34,10 @@ header{
   justify-content:space-between;
   gap:20px;
 }
-
-.brand h1{
-  font-family:Georgia,serif;
-  font-size:20px;
-  margin:0 0 4px;
-}
-
-.brand .sub{
-  font-size:12px;
-  opacity:.86;
-}
-
-.userbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:12px;
-}
-
-.layout{
-  display:grid;
-  grid-template-columns:230px 1fr;
-  min-height:calc(100vh - 76px);
-}
-
+.brand h1{font-family:Georgia,serif;font-size:20px;margin:0 0 4px}
+.brand .sub{font-size:12px;opacity:.86}
+.userbar{display:flex;align-items:center;gap:10px;font-size:12px}
+.layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 76px)}
 aside{
   background:#1a2a3e;
   color:#dfe8f3;
@@ -71,30 +46,11 @@ aside{
   flex-direction:column;
   gap:8px;
 }
-
-.navitem{
-  padding:11px 12px;
-  border-radius:8px;
-  font-size:14px;
-}
-
-.navitem.active{
-  background:#2c415f;
-  color:white;
-  font-weight:700;
-}
-
+.navitem{padding:11px 12px;border-radius:8px;font-size:14px}
+.navitem.active{background:#2c415f;color:white;font-weight:700}
 .navitem.dim{opacity:.6}
-
-.aside-bottom{
-  margin-top:auto;
-  font-size:12px;
-  opacity:.65;
-  padding:12px;
-}
-
+.aside-bottom{margin-top:auto;font-size:12px;opacity:.65;padding:12px}
 main{padding:26px}
-
 .topline{
   display:flex;
   justify-content:space-between;
@@ -102,17 +58,9 @@ main{padding:26px}
   gap:20px;
   margin-bottom:18px;
 }
-
-.topline h2{
-  margin:0;
-  font-size:28px;
-}
-
-.topline p{
-  margin:6px 0 0;
-  color:var(--muted);
-}
-
+.topline h2{margin:0;font-size:28px}
+.topline p{margin:6px 0 0;color:var(--muted)}
+.actions{display:flex;gap:10px;align-items:center}
 .badge{
   display:inline-flex;
   align-items:center;
@@ -123,67 +71,36 @@ main{padding:26px}
   background:#def3e7;
   color:#22744b;
 }
-
 .cards{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:14px;
   margin-bottom:18px;
 }
-
 .card,.panel{
   background:var(--card);
   border:1px solid var(--line);
   border-radius:12px;
   box-shadow:0 2px 8px rgba(20,35,55,.04);
 }
-
 .card{padding:18px}
-
-.kpi{
-  font-size:26px;
-  font-weight:800;
-  margin-bottom:5px;
-}
-
-.label{
-  font-size:13px;
-  color:var(--muted);
-}
-
+.kpi{font-size:26px;font-weight:800;margin-bottom:5px}
+.label{font-size:13px;color:var(--muted)}
 .panel{overflow:hidden}
-
-.panel h3{
-  margin:0;
-  padding:16px 18px;
+.panel-head{
+  padding:14px 18px;
   border-bottom:1px solid var(--line);
-  font-size:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
-
-.case{
-  padding:16px 18px;
-  border-bottom:1px solid var(--line);
-}
-
+.panel-head h3{margin:0;font-size:16px}
+.case{padding:16px 18px;border-bottom:1px solid var(--line)}
 .case:last-child{border-bottom:0}
-
-.case-title{
-  font-weight:800;
-  font-size:16px;
-}
-
-.meta{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:6px;
-  line-height:1.5;
-}
-
-.empty{
-  padding:28px 18px;
-  color:var(--muted);
-}
-
+.case-title{font-weight:800;font-size:16px}
+.meta{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.5}
+.empty{padding:28px 18px;color:var(--muted)}
 button{
   border:1px solid var(--line);
   background:white;
@@ -193,13 +110,7 @@ button{
   color:var(--text);
   cursor:pointer;
 }
-
-button.primary{
-  background:var(--navy);
-  color:white;
-  border-color:var(--navy);
-}
-
+button.primary{background:var(--navy);color:white;border-color:var(--navy)}
 #loginScreen{
   min-height:100vh;
   display:flex;
@@ -208,7 +119,6 @@ button.primary{
   padding:24px;
   background:linear-gradient(135deg,var(--navy),var(--navy2));
 }
-
 .loginbox{
   width:min(430px,100%);
   background:white;
@@ -216,52 +126,68 @@ button.primary{
   padding:30px;
   box-shadow:0 20px 60px rgba(0,0,0,.22);
 }
-
-.loginbox h1{
-  font-family:Georgia,serif;
-  margin:0 0 6px;
-  font-size:25px;
-}
-
-.loginbox p{
-  color:var(--muted);
-  margin:0 0 22px;
-}
-
-.loginbox label{
+.loginbox h1{font-family:Georgia,serif;margin:0 0 6px;font-size:25px}
+.loginbox p{color:var(--muted);margin:0 0 22px}
+.loginbox label,.form-group label{
   font-size:12px;
   font-weight:700;
   display:block;
   margin:8px 0 6px;
 }
-
-.loginbox input{
+.loginbox input,.form-group input,.form-group select,.form-group textarea{
   width:100%;
-  padding:12px;
+  padding:11px;
   border:1px solid var(--line);
   border-radius:8px;
   outline:none;
-  font-size:14px;
+  font:inherit;
+  background:white;
 }
+.loginbox button{width:100%;padding:12px;margin-top:16px}
+.error{color:#a52a2a;font-size:13px;margin-top:12px;line-height:1.4}
+.success{color:#22744b;font-size:13px;margin-top:12px}
+.security-note{font-size:11px;color:var(--muted);margin-top:16px;line-height:1.45}
 
-.loginbox button{
-  width:100%;
-  padding:12px;
-  margin-top:16px;
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(10,20,32,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:1000;
 }
-
-.error{
-  color:#a52a2a;
-  font-size:13px;
-  margin-top:12px;
-  line-height:1.4;
+.modal-box{
+  background:white;
+  width:min(760px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:14px;
+  box-shadow:0 24px 70px rgba(0,0,0,.3);
 }
-
-.security-note{
-  font-size:11px;
-  color:var(--muted);
-  margin-top:16px;
-  line-height:1.45;
+.modal-head{
+  padding:18px 20px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.modal-head h3{margin:0}
+.modal-body{padding:20px}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px 16px;
+}
+.form-group.full{grid-column:1/-1}
+.form-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
 }
 
 @media(max-width:900px){
@@ -269,6 +195,9 @@ button.primary{
   aside{display:none}
   .cards{grid-template-columns:1fr}
   .userbar span{display:none}
+  .topline{flex-direction:column}
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:auto}
 }
 </style>
 </head>
@@ -280,19 +209,17 @@ button.primary{
     <h1>Central Estudio Moreira</h1>
     <p>Acceso privado · Gestión jurídica</p>
 
-    <label for="email">Correo electrónico</label>
+    <label>Correo electrónico</label>
     <input id="email" type="email" autocomplete="username" placeholder="Tu correo">
 
-    <label for="password">Contraseña</label>
+    <label>Contraseña</label>
     <input id="password" type="password" autocomplete="current-password" placeholder="Tu contraseña">
 
     <button class="primary" id="loginBtn">Ingresar</button>
-
     <div id="loginError" class="error"></div>
 
     <div class="security-note">
-      Los expedientes no están incluidos en el código público de esta página.
-      Se consultan desde la base privada luego de autenticarte.
+      Los expedientes se consultan desde la base privada luego de autenticarte.
     </div>
   </div>
 </section>
@@ -325,327 +252,353 @@ button.primary{
   <div class="navitem dim">▤ Contable · Próximamente</div>
 
   <div class="aside-bottom">
-    MVP jurídico · versión 0.2<br>
+    Central jurídica · versión 0.3<br>
     Base privada · Supabase
   </div>
 </aside>
 
 <main>
 
-  <div class="topline">
-    <div>
-      <h2>Panel jurídico</h2>
-      <p>Gestión privada de expedientes del estudio</p>
-    </div>
-
-    <span class="badge">SESIÓN AUTENTICADA</span>
+<div class="topline">
+  <div>
+    <h2>Panel jurídico</h2>
+    <p>Gestión privada de expedientes del estudio</p>
   </div>
 
-  <section class="cards">
+  <div class="actions">
+    <span class="badge">SESIÓN AUTENTICADA</span>
+    <button class="primary" id="newCaseBtn">+ Nuevo expediente</button>
+  </div>
+</div>
 
-    <div class="card">
-      <div class="kpi" id="expCount">0</div>
-      <div class="label">Expedientes</div>
-    </div>
+<section class="cards">
+  <div class="card">
+    <div class="kpi" id="expCount">0</div>
+    <div class="label">Expedientes</div>
+  </div>
 
-    <div class="card">
-      <div class="kpi" id="novCount">0</div>
-      <div class="label">Novedades</div>
-    </div>
+  <div class="card">
+    <div class="kpi" id="novCount">0</div>
+    <div class="label">Novedades</div>
+  </div>
 
-    <div class="card">
-      <div class="kpi" id="taskCount">0</div>
-      <div class="label">Tareas pendientes</div>
-    </div>
+  <div class="card">
+    <div class="kpi" id="taskCount">0</div>
+    <div class="label">Tareas pendientes</div>
+  </div>
+</section>
 
-  </section>
-
-  <section class="panel">
+<section class="panel">
+  <div class="panel-head">
     <h3>Expedientes</h3>
+    <button class="primary" id="newCaseBtn2">+ Nuevo expediente</button>
+  </div>
 
-    <div id="cases">
-      <div class="empty">Cargando expedientes…</div>
-    </div>
-  </section>
+  <div id="cases">
+    <div class="empty">Cargando expedientes…</div>
+  </div>
+</section>
 
 </main>
 </div>
 </div>
 
+<div id="caseModal" class="modal hidden">
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h3>Nuevo expediente</h3>
+      <button id="closeModalBtn">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Número de expediente *</label>
+          <input id="fNumero" placeholder="Ej.: CIV 73952/2026">
+        </div>
+
+        <div class="form-group">
+          <label>Cliente</label>
+          <input id="fCliente" placeholder="Nombre del cliente">
+        </div>
+
+        <div class="form-group full">
+          <label>Carátula *</label>
+          <input id="fCaratula" placeholder="Carátula completa">
+        </div>
+
+        <div class="form-group">
+          <label>Jurisdicción</label>
+          <input id="fJurisdiccion" placeholder="Ej.: Nacional / CABA">
+        </div>
+
+        <div class="form-group">
+          <label>Fuero</label>
+          <input id="fFuero" placeholder="Ej.: Civil / Penal Federal">
+        </div>
+
+        <div class="form-group">
+          <label>Juzgado</label>
+          <input id="fJuzgado" placeholder="Ej.: Juzgado Civil 61">
+        </div>
+
+        <div class="form-group">
+          <label>Secretaría</label>
+          <input id="fSecretaria" placeholder="Secretaría">
+        </div>
+
+        <div class="form-group">
+          <label>Sistema</label>
+          <select id="fSistema">
+            <option value="">Seleccionar</option>
+            <option>PJN</option>
+            <option>EJE CABA</option>
+            <option>MEB</option>
+            <option>MEV PBA</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Estado</label>
+          <input id="fEstado" placeholder="Ej.: En despacho">
+        </div>
+
+        <div class="form-group full">
+          <label>Próxima acción</label>
+          <input id="fProximaAccion" placeholder="Ej.: Controlar despacho">
+        </div>
+
+        <div class="form-group full">
+          <label>Observaciones</label>
+          <textarea id="fObservaciones" rows="3"></textarea>
+        </div>
+
+      </div>
+
+      <div id="formError" class="error"></div>
+      <div id="formSuccess" class="success"></div>
+
+      <div class="form-actions">
+        <button id="cancelCaseBtn">Cancelar</button>
+        <button class="primary" id="saveCaseBtn">Guardar expediente</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
+const SUPABASE_URL='https://axspjbvinlmpotbrlzux.supabase.co';
+const SUPABASE_KEY='sb_publishable_Ig89c4nUM4Va7x9XT5bsqg_UcqmcGTU';
 
-const SUPABASE_URL =
-  'https://axspjbvinlmpotbrlzux.supabase.co';
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-const SUPABASE_KEY =
-  'sb_publishable_Ig89c4nUM4Va7x9XT5bsqg_UcqmcGTU';
-
-const db = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-const loginScreen =
-  document.getElementById('loginScreen');
-
-const app =
-  document.getElementById('app');
-
-const loginError =
-  document.getElementById('loginError');
-
-const loginBtn =
-  document.getElementById('loginBtn');
+const loginScreen=document.getElementById('loginScreen');
+const app=document.getElementById('app');
+const loginError=document.getElementById('loginError');
+const loginBtn=document.getElementById('loginBtn');
+const caseModal=document.getElementById('caseModal');
 
 function esc(value){
-
-  return String(value ?? '').replace(
-    /[&<>"']/g,
-    c => ({
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;',
-      "'":'&#39;'
-    }[c])
-  );
-
+  return String(value ?? '').replace(/[&<>"']/g,c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c]));
 }
 
 async function renderSession(session){
-
   if(!session){
-
     app.classList.add('hidden');
     loginScreen.classList.remove('hidden');
-
     return;
-
   }
 
   loginScreen.classList.add('hidden');
   app.classList.remove('hidden');
-
-  document.getElementById('userEmail').textContent =
-    session.user.email || '';
-
+  document.getElementById('userEmail').textContent=session.user.email || '';
   await loadData();
-
 }
 
-loginBtn.addEventListener(
-  'click',
-  async () => {
+loginBtn.addEventListener('click',async()=>{
+  loginError.textContent='';
+  loginBtn.disabled=true;
+  loginBtn.textContent='Ingresando…';
 
-    loginError.textContent = '';
+  const email=document.getElementById('email').value.trim();
+  const password=document.getElementById('password').value;
 
-    loginBtn.disabled = true;
-    loginBtn.textContent = 'Ingresando…';
-
-    const email =
-      document.getElementById('email').value.trim();
-
-    const password =
-      document.getElementById('password').value;
-
-    if(!email || !password){
-
-      loginError.textContent =
-        'Ingresá tu correo y contraseña.';
-
-      loginBtn.disabled = false;
-      loginBtn.textContent = 'Ingresar';
-
-      return;
-
-    }
-
-    const {data,error} =
-      await db.auth.signInWithPassword({
-        email,
-        password
-      });
-
-    loginBtn.disabled = false;
-    loginBtn.textContent = 'Ingresar';
-
-    if(error){
-
-      loginError.textContent =
-        'No se pudo ingresar. Revisá el correo y la contraseña.';
-
-      return;
-
-    }
-
-    await renderSession(data.session);
-
+  if(!email || !password){
+    loginError.textContent='Ingresá tu correo y contraseña.';
+    loginBtn.disabled=false;
+    loginBtn.textContent='Ingresar';
+    return;
   }
-);
 
-document
-  .getElementById('password')
-  .addEventListener(
-    'keydown',
-    e => {
+  const {data,error}=await db.auth.signInWithPassword({email,password});
 
-      if(e.key === 'Enter'){
-        loginBtn.click();
-      }
+  loginBtn.disabled=false;
+  loginBtn.textContent='Ingresar';
 
-    }
-  );
+  if(error){
+    loginError.textContent='No se pudo ingresar. Revisá el correo y la contraseña.';
+    return;
+  }
 
-document
-  .getElementById('logoutBtn')
-  .addEventListener(
-    'click',
-    async () => {
+  await renderSession(data.session);
+});
 
-      await db.auth.signOut();
-      await renderSession(null);
+document.getElementById('password').addEventListener('keydown',e=>{
+  if(e.key==='Enter') loginBtn.click();
+});
 
-    }
-  );
+document.getElementById('logoutBtn').addEventListener('click',async()=>{
+  await db.auth.signOut();
+  await renderSession(null);
+});
+
+function openCaseModal(){
+  document.getElementById('formError').textContent='';
+  document.getElementById('formSuccess').textContent='';
+  caseModal.classList.remove('hidden');
+}
+
+function closeCaseModal(){
+  caseModal.classList.add('hidden');
+}
+
+document.getElementById('newCaseBtn').onclick=openCaseModal;
+document.getElementById('newCaseBtn2').onclick=openCaseModal;
+document.getElementById('closeModalBtn').onclick=closeCaseModal;
+document.getElementById('cancelCaseBtn').onclick=closeCaseModal;
+
+caseModal.addEventListener('click',e=>{
+  if(e.target===caseModal) closeCaseModal();
+});
+
+document.getElementById('saveCaseBtn').addEventListener('click',async()=>{
+
+  const saveBtn=document.getElementById('saveCaseBtn');
+  const errorBox=document.getElementById('formError');
+
+  errorBox.textContent='';
+
+  const numero=document.getElementById('fNumero').value.trim();
+  const caratula=document.getElementById('fCaratula').value.trim();
+
+  if(!numero || !caratula){
+    errorBox.textContent='Completá número de expediente y carátula.';
+    return;
+  }
+
+  saveBtn.disabled=true;
+  saveBtn.textContent='Guardando…';
+
+  const expediente={
+    id:Date.now(),
+    numero_expediente:numero,
+    caratula:caratula,
+    cliente:document.getElementById('fCliente').value.trim() || null,
+    jurisdiccion:document.getElementById('fJurisdiccion').value.trim() || null,
+    fuero:document.getElementById('fFuero').value.trim() || null,
+    juzgado:document.getElementById('fJuzgado').value.trim() || null,
+    secretaria:document.getElementById('fSecretaria').value.trim() || null,
+    sistema:document.getElementById('fSistema').value || null,
+    estado:document.getElementById('fEstado').value.trim() || null,
+    proxima_accion:document.getElementById('fProximaAccion').value.trim() || null,
+    responsable:'Fernando Nicolás Moreira',
+    observaciones:document.getElementById('fObservaciones').value.trim() || null,
+    updated_at:new Date().toISOString()
+  };
+
+  const {error}=await db.from('expedientes').insert(expediente);
+
+  saveBtn.disabled=false;
+  saveBtn.textContent='Guardar expediente';
+
+  if(error){
+    console.error(error);
+    errorBox.textContent='No se pudo guardar el expediente.';
+    return;
+  }
+
+  [
+    'fNumero','fCliente','fCaratula','fJurisdiccion','fFuero',
+    'fJuzgado','fSecretaria','fEstado','fProximaAccion','fObservaciones'
+  ].forEach(id=>document.getElementById(id).value='');
+
+  document.getElementById('fSistema').value='';
+
+  closeCaseModal();
+  await loadData();
+});
 
 async function loadData(){
 
-  const casesBox =
-    document.getElementById('cases');
+  const casesBox=document.getElementById('cases');
 
-  casesBox.innerHTML =
-    '<div class="empty">Cargando expedientes…</div>';
+  casesBox.innerHTML='<div class="empty">Cargando expedientes…</div>';
 
   const [
     {data:expedientes,error:expError},
     {data:actuaciones,error:actError},
     {data:tareas,error:taskError}
-  ] = await Promise.all([
-
-    db
-      .from('expedientes')
-      .select('*')
-      .order(
-        'created_at',
-        {ascending:false}
-      ),
-
-    db
-      .from('actuaciones')
-      .select('id,es_novedad'),
-
-    db
-      .from('tareas')
-      .select('id,estado')
-
+  ]=await Promise.all([
+    db.from('expedientes').select('*').order('created_at',{ascending:false}),
+    db.from('actuaciones').select('id,es_novedad'),
+    db.from('tareas').select('id,estado')
   ]);
 
   if(expError || actError || taskError){
-
-    casesBox.innerHTML =
-      '<div class="empty">La sesión inició, pero hubo un problema al leer la base. Revisaremos la configuración de acceso.</div>';
-
+    casesBox.innerHTML='<div class="empty">Hubo un problema al leer la base.</div>';
     return;
-
   }
 
-  const exps = expedientes || [];
-  const acts = actuaciones || [];
-  const tasks = tareas || [];
+  const exps=expedientes || [];
+  const acts=actuaciones || [];
+  const tasks=tareas || [];
 
-  document.getElementById('expCount').textContent =
-    exps.length;
+  document.getElementById('expCount').textContent=exps.length;
+  document.getElementById('novCount').textContent=
+    acts.filter(x=>x.es_novedad).length;
 
-  document.getElementById('novCount').textContent =
-    acts.filter(
-      x => x.es_novedad
-    ).length;
-
-  document.getElementById('taskCount').textContent =
-    tasks.filter(
-      x =>
-        String(
-          x.estado || ''
-        ).toLowerCase() !== 'completada'
-    ).length;
+  document.getElementById('taskCount').textContent=
+    tasks.filter(x=>String(x.estado || '').toLowerCase()!=='completada').length;
 
   if(!exps.length){
-
-    casesBox.innerHTML =
+    casesBox.innerHTML=
       '<div class="empty">La Central está conectada a la base privada. Todavía no hay expedientes cargados.</div>';
-
     return;
-
   }
 
-  casesBox.innerHTML =
-    exps.map(
-      x => `
-
-      <div class="case">
-
-        <div class="case-title">
-          ${esc(
-            x.caratula ||
-            'Sin carátula'
-          )}
-        </div>
-
-        <div class="meta">
-
-          ${esc(
-            x.numero_expediente ||
-            'Sin número'
-          )}
-
-          ${
-            x.juzgado
-            ? ' · ' + esc(x.juzgado)
-            : ''
-          }
-
-          ${
-            x.secretaria
-            ? ' · ' + esc(x.secretaria)
-            : ''
-          }
-
-          ${
-            x.estado
-            ? ' · ' + esc(x.estado)
-            : ''
-          }
-
-        </div>
-
+  casesBox.innerHTML=exps.map(x=>`
+    <div class="case">
+      <div class="case-title">${esc(x.caratula || 'Sin carátula')}</div>
+      <div class="meta">
+        ${esc(x.numero_expediente || 'Sin número')}
+        ${x.juzgado ? ' · '+esc(x.juzgado) : ''}
+        ${x.secretaria ? ' · '+esc(x.secretaria) : ''}
+        ${x.sistema ? ' · '+esc(x.sistema) : ''}
+        ${x.estado ? ' · '+esc(x.estado) : ''}
       </div>
-
-      `
-    ).join('');
-
+    </div>
+  `).join('');
 }
 
-(async () => {
-
-  const {
-    data:{session}
-  } =
-    await db.auth.getSession();
-
+(async()=>{
+  const {data:{session}}=await db.auth.getSession();
   await renderSession(session);
-
 })();
 
-db.auth.onAuthStateChange(
-  (_event,session) => {
-
-    if(!session){
-      renderSession(null);
-    }
-
-  }
-);
-
+db.auth.onAuthStateChange((_event,session)=>{
+  if(!session) renderSession(null);
+});
 </script>
 
 </body>
